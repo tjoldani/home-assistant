@@ -1,0 +1,15 @@
+- name: Studio Time
+  id: "studio_time"
+  icon: mdi:music-box
+  entities:
+    light.studio_lounge_group:
+      state: "on"
+      brightness: 190
+    light.studio_office_lights:
+      state: "on"
+      brightness: 190
+    light.studio_tv_lights:
+      state: "on"
+      brightness: 190
+    switch.studio_stereo:
+      state: "on"

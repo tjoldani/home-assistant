@@ -1,0 +1,28 @@
+---
+alias: "Kitchen Lights Wake"
+description: "Entry motion turns on the and kitchen lights."
+
+id: "kitchen_lights_wake"
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.entry_motion
+    from: "off"
+    to: "on"
+
+condition:
+  condition: time
+  after: "05:00:00"
+  before: "10:00:00"
+
+action:
+  - service: switch.turn_on
+    target:
+      area_id: kitchen
+
+  - service: light.turn_on
+    target:
+      area_id: kitchen
+    data:
+      brightness_pct: 70

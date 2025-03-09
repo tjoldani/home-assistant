@@ -1,0 +1,21 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Automations
+automation: !include automations.yaml
+automation split: !include_dir_list automations/
+
+# Scenes
+scene: !include_dir_merge_list scenes/
+
+# Scripts and Sensors
+script: !include_dir_merge_named scripts/
+sensor: !include_dir_merge_list sensors/
+
+# Input Numbers and Groups
+input_number: !include_dir_merge_named input_numbers/
+group: !include_dir_merge_named groups/

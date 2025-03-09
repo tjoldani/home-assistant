@@ -1,0 +1,24 @@
+- name: Museum Reading
+  id: "museum_reading"
+  icon: mdi:book-heart
+  entities:
+    light.museum_reading_lamp:
+      state: "on"
+      brightness_pct: 85%
+    switch.museum_record_player:
+      state: "on"
+    light.museum_brown:
+      state: "on"
+      brightness_pct: 20%
+    light.museum_desk:
+      state: "on"
+      brightness_pct: 20%
+    light.museum_horses:
+      state: "on"
+      brightness_pct: 20%
+    light.museum_red_left:
+      state: "on"
+      brightness_pct: 20%
+    light.museum_red_right:
+      state: "on"
+      brightness_pct: 20%

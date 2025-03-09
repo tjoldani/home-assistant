@@ -1,0 +1,17 @@
+---
+alias: "Tag Mia"
+description: "Scan tag and toggle Mias lights"
+
+id: "tag_mia"
+mode: single
+
+trigger:
+  - platform: tag
+    tag_id: mias_room_lights
+  - platform: tag
+    tag_id: mias_lights_door
+
+action:
+  - service: light.toggle
+    target:
+      area_id: mias_room

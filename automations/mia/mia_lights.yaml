@@ -1,0 +1,21 @@
+---
+alias: "Mia Lights"
+description: "Turn in Mia's lights when motion is detected."
+
+id: "mia_lights"
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.mias_room_motion
+    to: "on"
+
+condition:
+  - condition: time
+    after: "06:00:00"
+    before: "21:00:00"
+
+action:
+  - service: light.turn_on
+    target:
+      area_id: mias_room

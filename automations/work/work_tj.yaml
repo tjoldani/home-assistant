@@ -1,0 +1,17 @@
+---
+alias: "Work TJ"
+description: "Notify Nichole when I leave work."
+
+id: "work_tj"
+mode: single
+
+trigger:
+  - platform: zone
+    entity_id: person.tj
+    zone: zone.work
+    event: leave
+
+action:
+  - service: notify.mobile_app_nichole
+    data:
+      message: "TJ has just left work."

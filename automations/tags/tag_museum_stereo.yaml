@@ -1,0 +1,15 @@
+---
+alias: Tag Museum Stereo
+description: "Tag and turn on the stereo."
+
+id: "tag_museum_stereo"
+mode: single
+
+trigger:
+  - platform: tag
+    tag_id: Museum Stereo
+
+action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.museum_stereo

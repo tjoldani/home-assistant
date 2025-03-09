@@ -1,0 +1,29 @@
+---
+alias: "Entry Thermostat"
+description: "Sets the thermostat temperature based on the time of day and presence."
+
+id: "entry_thermostat"
+mode: single
+
+trigger:
+  - entity_id: input_number.home_temperature_day
+    trigger: state
+  - entity_id: input_number.home_temperature_night
+    trigger: state
+  - entity_id: input_number.home_temperature_away
+    trigger: state
+  - entity_id: group.family
+    trigger: state
+  - hours: /1
+    trigger: time_pattern
+
+action:
+  - target:
+      entity_id: climate.thermostat
+    data:
+      temperature:
+        "{% if is_state('group.family', 'not_home') %}\n  {{ states('input_number.home_temperature_away')
+        | float }}\n{% elif now().hour >= 7 and now().hour < 19 %}\n  {{ states('input_number.home_temperature_day')
+        | float }}\n{% else %}\n  {{ states('input_number.home_temperature_night')
+        | float }}\n{% endif %}\n"
+    action: climate.set_temperature

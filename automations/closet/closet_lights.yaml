@@ -1,0 +1,37 @@
+---
+alias: "Closet Lights"
+description: "Turn on lights when motion is detected and off after 5 minutes of no motion."
+
+id: "closet_lights"
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.closet_motion
+    to: "on"
+
+  - platform: state
+    entity_id: binary_sensor.closet_motion
+    to: "off"
+    for:
+      minutes: 5
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.closet_motion
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            target:
+              area_id: closet
+
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.closet_motion
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            target:
+              area_id: closet

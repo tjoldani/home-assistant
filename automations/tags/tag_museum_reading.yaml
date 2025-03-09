@@ -1,0 +1,17 @@
+---
+alias: Tag Museum Reading
+description: ""
+
+id: "tag_museum"
+mode: single
+
+trigger:
+  - platform: tag
+    tag_id: museum_reading_scene
+
+action:
+  - service: scene.turn_on
+    data:
+      transition: 5
+    target:
+      entity_id: scene.museum_reading

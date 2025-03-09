@@ -1,0 +1,19 @@
+---
+alias: "Tag Studio Steps"
+description: "Scan tag and turn off studio"
+
+id: "tag_studio_steps"
+mode: single
+
+trigger:
+  - platform: tag
+    tag_id: studio_off
+
+actions:
+  - action: light.turn_off
+    target:
+     area_id: studio
+  - action: switch.turn_off
+    target:
+      area_id: studio
+

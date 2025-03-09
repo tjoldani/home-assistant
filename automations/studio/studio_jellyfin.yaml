@@ -1,0 +1,40 @@
+---
+alias: "Studio Jellyfin"
+description: >-
+  Set the scene to Movie Time when Jellyfin
+  is playing and Studio Time when it is idle.
+
+id: "studio_jellyfin"
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: media_player.studio_jellyfin
+    to: "playing"
+
+  - platform: state
+    entity_id: media_player.studio_jellyfin
+    to: "idle"
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: media_player.studio_jellyfin
+            state: "playing"
+        sequence:
+          - service: scene.turn_on
+            target:
+              entity_id: scene.movie_time
+            data:
+              transition: 3
+      - conditions:
+          - condition: state
+            entity_id: media_player.studio_jellyfin
+            state: "idle"
+        sequence:
+          - service: scene.turn_on
+            target:
+              entity_id: scene.studio_time
+            data:
+              transition: 3

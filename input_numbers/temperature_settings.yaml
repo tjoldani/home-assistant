@@ -1,0 +1,27 @@
+---
+home_temperature_day:
+  name: "Daytime Target Temperature"
+  min: 67
+  max: 72
+  step: 1
+  unit_of_measurement: "°F"
+  mode: slider
+  icon: mdi:weather-sunny
+
+home_temperature_night:
+  name: "Nighttime Target Temperature"
+  min: 65
+  max: 70
+  step: 1
+  unit_of_measurement: "°F"
+  mode: slider
+  icon: mdi:weather-night
+
+home_temperature_away:
+  name: "Away Target Temperature"
+  min: 60
+  max: 65
+  step: 1
+  unit_of_measurement: "°F"
+  mode: slider
+  icon: mdi:home-export-outline

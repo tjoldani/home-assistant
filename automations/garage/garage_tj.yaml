@@ -1,0 +1,38 @@
+---
+alias: "Garage TJ"
+description: "Open the garage door when TJ comes home."
+
+id: "garage_tj"
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: device_tracker.tjs_iphone
+    from: "not_home"
+    to: "home"
+    for: "00:00:30"
+
+condition:
+  - condition: state
+    entity_id: binary_sensor.garage_door_sensor_sensor_state_any
+    state: "off"
+
+action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.garage_door
+
+  - service: light.turn_on
+    target:
+      area_id: kitchen
+
+  - service: switch.turn_on
+    target:
+      area_id: kitchen
+
+  - action: media_player.play_media
+    target:
+      entity_id: media_player.all_homepod_minis
+    data:
+      media_content_id: "media-source://media_source/local/YouSuffer.mp3"
+      media_content_type: "music"

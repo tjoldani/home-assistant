@@ -1,0 +1,17 @@
+---
+alias: "Entry Doorbell"
+description: "Send a notification when the doorbell is pushed."
+
+id: "entry_doorbell"
+mode: single
+
+trigger:
+  - platform: state 
+    entity_id: binary_sensor.doorbell_doorbell
+    to: "on"
+
+action:
+  - service: notify.notify
+    data:
+      title: "Doorbell Notification"
+      message: "Someone rang the doorbell." 

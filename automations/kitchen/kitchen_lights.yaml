@@ -1,0 +1,36 @@
+---
+alias: "Kitchen Lights"
+description: "Turn on lights with motion and off after 5 minutes."
+
+id: "kitchen_lights"
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.kitchen_motion
+    to: "on"
+
+  - platform: state
+    entity_id: binary_sensor.kitchen_motion
+    to: "off"
+    for:
+      minutes: 5
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.kitchen_motion
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            target:
+              area_id: kitchen
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.kitchen_motion
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            target:
+              area_id: kitchen

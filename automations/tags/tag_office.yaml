@@ -1,0 +1,15 @@
+---
+alias: "Tag Nichole Office"
+description: "Scan and turn off office lights."
+
+id: "tag_office"
+mode: single
+
+trigger:
+  - platform: tag
+    tag_id: nichole_office_tag
+
+action:
+  - service: light.toggle
+    target:
+      area_id: office

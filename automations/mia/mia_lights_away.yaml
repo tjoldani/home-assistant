@@ -1,0 +1,18 @@
+---
+alias: "Mia Lights Away"
+description: "Turn off Mia's lights when she is away."
+
+id: "mia_lights_away"
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: device_tracker.mias_iphone
+    to: "not_home"
+
+action:
+  - service: light.turn_off
+    target:
+      area_id:
+        - mias_room
+        - closet

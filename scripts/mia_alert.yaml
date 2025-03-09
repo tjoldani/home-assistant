@@ -1,0 +1,13 @@
+---
+mias_lights_blink:
+  alias: "Blink Mia's Lights"
+  description: "Blinks Mia's bed light when triggered"
+
+  mode: single
+
+  sequence:
+    - service: light.turn_on
+      target:
+        entity_id: light.mias_room_bed
+      data:
+        flash: long

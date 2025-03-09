@@ -1,0 +1,44 @@
+---
+alias: Bedroom Lights
+description: "Turn on and off bedroom lights based on motion."
+
+id: "bedroom_lights"
+mode: restart
+
+trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_motion
+    to: "on"
+
+  - platform: state
+    entity_id: binary_sensor.bedroom_motion
+    to: "off"
+    for:
+      minutes: 15
+
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.bedroom_motion
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            target:
+              area_id: bedroom
+            data:
+              brightness_pct: >
+                {% if states.sun.sun.state == "above_horizon" %}
+                  35
+                {% else %}
+                  1
+                {% endif %}
+
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.bedroom_motion
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            target:
+              area_id: bedroom

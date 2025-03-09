@@ -1,0 +1,41 @@
+---
+alias: "Outside Lights"
+description: "Turn outside lights on at sunset and off at sunrise."
+
+id: "outside_lights"
+mode: single
+
+trigger:
+- platform: sun
+  event: sunset
+  offset: "0"
+  id: sunset
+- platform: sun
+  event: sunrise
+  offset: "0"
+  id: sunrise
+
+action:
+- choose:
+  - conditions:
+    - condition: trigger
+      id: sunset
+    sequence:
+    - service: light.turn_on
+      target:
+        area_id:
+        - driveway
+        - porch
+      data:
+        kelvin: 3200
+        brightness_pct: 50
+
+  - conditions:
+    - condition: trigger
+      id: sunrise
+    sequence:
+    - service: light.turn_off
+      target:
+        area_id:
+        - driveway
+        - porch

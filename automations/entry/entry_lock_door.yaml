@@ -1,0 +1,18 @@
+---
+alias: "Entry Lock Door"
+description: "Lock the front door if unlocked."
+
+id: "entry_lock_door"
+mode: single
+
+trigger:
+  - platform: state
+    entity_id: lock.front_door
+    from: locked
+    to: unlocked
+    for: 00:15:00
+
+action:
+  - service: lock.lock
+    target:
+      entity_id: lock.front_door
