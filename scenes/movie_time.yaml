@@ -1,3 +1,4 @@
+---
 - name: "Movie Time"
   id: "movie_time"
   icon: mdi:music-box

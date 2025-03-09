@@ -1,3 +1,4 @@
+---
 - platform: min_max
   name: "Average Home Temperature Night"
   type: mean
