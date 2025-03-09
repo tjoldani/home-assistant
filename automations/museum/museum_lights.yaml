@@ -10,28 +10,28 @@ trigger:
     entity_id: binary_sensor.museum_motion
     to: "on"
 
-  - platform: state 
+  - platform: state
     entity_id: binary_sensor.museum_motion
     to: "off"
     for:
-      minutes: 25
+      minutes: 30
 
 action:
   - choose:
-    - conditions:
-      - condition: state 
-        entity_id: binary_sensor.museum_motion
-        state: "on"
-      sequence:
-        - service: light.turn_on
-          target:
-            area_id: museum
-    
-    - conditions:
-      - condition: state 
-        entity_id: binary_sensor.museum_motion
-        state: "off"
-      sequence:
-        - service: light.turn_off
-          target:
-            area_id: museum
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.museum_motion
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            target:
+              area_id: museum
+
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.museum_motion
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            target:
+              area_id: museum

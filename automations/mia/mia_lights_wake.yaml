@@ -24,4 +24,4 @@ condition:
 action:
   - service: light.turn_on
     target:
-    area_id: mias_room
+      entity_id: light.mias_room

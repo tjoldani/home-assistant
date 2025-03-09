@@ -6,16 +6,16 @@ id: "studio_lights"
 mode: single
 
 trigger:
-- platform: state
-  entity_id: binary_sensor.studio_motion
-  to: "on"
+  - platform: state
+    entity_id: binary_sensor.studio_motion
+    to: "on"
 
 condition:
-- condition: state
-  entity_id: light.studio_lounge_1
-  state: "off"
+  - condition: state
+    entity_id: light.studio_lounge_1
+    state: "off"
 
 action:
-- service: scene.turn_on
-  target:
-    entity_id: scene.studio_time
+  - service: scene.turn_on
+    target:
+      entity_id: scene.studio_time
