@@ -6,23 +6,22 @@ id: "mia_lights_wake"
 mode: single
 
 trigger:
-- platform: time
-  at: 06:00:00
+  - platform: time
+    at: 06:00:00
 
 condition:
-- condition: time
-  weekday:
-  - mon
-  - tue
-  - wed
-  - thu
-  - fri
-
-- condition: state
-  entity_id: device_tracker.mias_iphone
-  state: "home"
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  - condition: state
+    entity_id: device_tracker.mias_iphone
+    state: "home"
 
 action:
-- service: light.turn_on
-  target:
+  - service: light.turn_on
+    target:
     area_id: mias_room

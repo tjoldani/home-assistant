@@ -1,8 +1,8 @@
 ---
 alias: "Bedroom Goodnight"
-description: >- 
-  Turns off lights, locks doors, and shuts down 
-  the house when TJ's phone starts charging at night."
+description: >-
+  Turns off lights, locks doors, and shuts down
+  the house when TJ's phone starts charging at night.
 
 id: "bedroom_goodnight"
 mode: restart

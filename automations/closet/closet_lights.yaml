@@ -1,6 +1,8 @@
 ---
 alias: "Closet Lights"
-description: "Turn on lights when motion is detected and off after 5 minutes of no motion."
+description: >-
+  Turn on lights when motion is detected and off
+  after 5 minutes of no motion.
 
 id: "closet_lights"
 mode: restart

@@ -2,29 +2,30 @@
 alias: "Garage Lights"
 description: "Turn on garage lights when the door opens and off when it closes."
 
-id: "garge_lights"
+id: "garage_lights"
 mode: restart
 
 trigger:
-- platform: state
-  entity_id: binary_sensor.garage_door_sensor_sensor_state_any
-  
-action:
-- choose:
-  - conditions:
-    - condition: state
-      entity_id: binary_sensor.garage_door_sensor_sensor_state_any
-      state: "on"
-    sequence:
-    - service: light.turn_on
-      target:
-        area_id: garage
+  - platform: state
+    entity_id: binary_sensor.garage_door_sensor_sensor_state_any
 
-  - conditions:
-    - condition: state
-      entity_id: binary_sensor.garage_door_sensor_sensor_state_any
-      state: "off"
-    sequence:
-    - service: light.turn_off
-      target:
-        area_id: garage
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.garage_door_sensor_sensor_state_any
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            target:
+              area_id: garage
+
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.garage_door_sensor_sensor_state_any
+            state: "off"
+        sequence:
+          - delay: "00:02:00"
+          - service: light.turn_off
+            target:
+              area_id: garage
