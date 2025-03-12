@@ -23,7 +23,7 @@ action:
     data:
       temperature:
         "{% if is_state('group.family', 'not_home') %}\n  {{ states('input_number.home_temperature_away')
-        | float }}\n{% elif now().hour >= 7 and now().hour < 19 %}\n  {{ states('input_number.home_temperature_day')
+        | float }}\n{% elif now().hour >= 7 and now().hour < 21 %}\n  {{ states('input_number.home_temperature_day')
         | float }}\n{% else %}\n  {{ states('input_number.home_temperature_night')
         | float }}\n{% endif %}\n"
     action: climate.set_temperature

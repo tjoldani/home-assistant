@@ -1,8 +1,8 @@
 ---
 home_temperature_day:
   name: "Daytime Target Temperature"
-  min: 67
-  max: 72
+  min: 65
+  max: 75
   step: 1
   unit_of_measurement: "°F"
   mode: slider
@@ -11,7 +11,7 @@ home_temperature_day:
 home_temperature_night:
   name: "Nighttime Target Temperature"
   min: 65
-  max: 70
+  max: 75
   step: 1
   unit_of_measurement: "°F"
   mode: slider
@@ -19,7 +19,7 @@ home_temperature_night:
 
 home_temperature_away:
   name: "Away Target Temperature"
-  min: 60
+  min: 65
   max: 75
   step: 1
   unit_of_measurement: "°F"
