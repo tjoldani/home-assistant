@@ -18,12 +18,15 @@ trigger:
     trigger: time_pattern
 
 action:
-  - target:
+  - service: climate.set_temperature
+    target:
       entity_id: climate.thermostat
     data:
-      temperature:
-        "{% if is_state('group.family', 'not_home') %}\n  {{ states('input_number.home_temperature_away')
-        | float }}\n{% elif now().hour >= 7 and now().hour < 21 %}\n  {{ states('input_number.home_temperature_day')
-        | float }}\n{% else %}\n  {{ states('input_number.home_temperature_night')
-        | float }}\n{% endif %}\n"
-    action: climate.set_temperature
+      temperature: >
+        {% if is_state('group.family', 'not_home') %}
+          {{ states('input_number.home_temperature_away') | float }}
+        {% elif now().hour >= 7 and now().hour < 21 %}
+          {{ states('input_number.home_temperature_day') | float }}
+        {% else %}
+          {{ states('input_number.home_temperature_night') | float }}
+        {% endif %}

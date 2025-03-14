@@ -1,8 +1,8 @@
 ---
 alias: "Entry Away"
 description: >-
-  Lock the door and close the garage
-   door when everyone leaves.
+  When anyone leaves, lock the front door, close the
+  garage door if it is open, and announce to TJ.
 
 id: "entry_away"
 mode: single
