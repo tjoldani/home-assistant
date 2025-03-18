@@ -36,7 +36,6 @@ action:
       - service: switch.turn_on
         target:
           entity_id: switch.garage_door
-
-  - action: notify.mobile_app_tjs_iphone
-    data:
-      message: "Front door locked and garage closed."
+      - action: notify.mobile_app_tjs_iphone
+        data:
+          message: "Garage door closed."
