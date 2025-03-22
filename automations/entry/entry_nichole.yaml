@@ -1,6 +1,7 @@
 ---
 alias: "Entry Nichole"
-description: "Unlock the door, turn on kitchen lights, and announce when Nichole is home."
+description: >-
+  Unlock the door, turn on kitchen lights, and announce when Nichole is home."
 
 id: "entry_nichole"
 mode: single
@@ -20,8 +21,18 @@ action:
     target:
       entity_id: lock.front_door
 
-  - service: tts.cloud_say
+  - choose:
+      - conditions:
+          - condition: time
+            after: "08:00:00"
+            before: "21:00:00"
+        sequence:
+          - service: tts.cloud_say
+            data:
+              cache: true
+              entity_id: media_player.all_homepod_minis
+              message: "Nichole is home."
+
+  - service: notify.mobile_app_tjs_iphone
     data:
-      cache: true
-      entity_id: media_player.all_homepod_minis
-      message: Nichole is home.
+      message: "Nichole is home."

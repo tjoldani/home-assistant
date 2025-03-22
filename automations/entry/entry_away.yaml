@@ -36,6 +36,9 @@ action:
       - service: switch.turn_on
         target:
           entity_id: switch.garage_door
-      - action: notify.mobile_app_tjs_iphone
+      - service: notify.notify
         data:
+          target:
+            - mobile_app_tjs_iphone
+            - mobile_app_nichole
           message: "Garage door closed."
