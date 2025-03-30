@@ -13,6 +13,6 @@ trigger:
 action:
   - service: light.turn_off
     target:
-      area_id:
-        - mias_room
-        - closet
+      entity_id:
+        - light.mias_light_zgroup
+        - light.closet_lights_zgroup

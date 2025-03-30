@@ -23,9 +23,9 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id:
-                - driveway
-                - porch
+              entity_id:
+                - light.driveway_lights_zgroup
+                - light.porch_lights_zgroup
             data:
               kelvin: 3200
               brightness_pct: 50
@@ -36,6 +36,6 @@ action:
         sequence:
           - service: light.turn_off
             target:
-              area_id:
-                - driveway
-                - porch
+              entity_id:
+                - light.driveway_lights_zgroup
+                - light.porch_lights_zgroup

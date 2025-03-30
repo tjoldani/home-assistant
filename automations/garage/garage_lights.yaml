@@ -1,6 +1,8 @@
 ---
 alias: "Garage Lights"
-description: "Turn on garage lights when the door opens and off when it closes."
+description: >-
+  Turn on garage lights when the door opens
+  and off when it closes.
 
 id: "garage_lights"
 mode: restart
@@ -18,7 +20,7 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id: garage
+              entity_id: light.garage_lights_zgroup
 
       - conditions:
           - condition: state
@@ -28,4 +30,4 @@ action:
           - delay: "00:02:00"
           - service: light.turn_off
             target:
-              area_id: garage
+              entity_id: light.garage_lights_zgroup

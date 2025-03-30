@@ -1,6 +1,7 @@
 ---
 alias: "Entry Thermostat"
-description: "Sets the thermostat temperature based on the time of day and presence."
+description: >-
+  Sets the thermostat temperature based on the time of day and presence.
 
 id: "entry_thermostat"
 mode: single

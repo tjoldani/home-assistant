@@ -20,25 +20,22 @@ condition:
 action:
   - service: switch.turn_off
     target:
-      area_id:
-        - backyard
-        - kitchen
-        - living_room
-        - museum
-        - studio
+      entity_id:
+        - switch.museum_stereo
+        - switch.museum_tv_lamps_switch
 
   - service: light.turn_off
     target:
-      area_id:
-        - studio
-        - entry
-        - garage
-        - kitchen
-        - living_room
-        - lounge
-        - museum
-        - bathroom
-        - bedroom
+      entity_id:
+        - light.studio_lights_zgroup
+        - light.entry_lights_zgroup
+        - light.garage_lights_zgroup
+        - light.kitchen_lights_zgroup
+        - light.living_room_lights_zgroup
+        - light.lounge_lights_zgroup
+        - light.museum_lights_zgroup
+        - light.bathroom_lights_zgroup
+        - light.bedroom_lights_zgroup
 
   - service: lock.lock
     target:

@@ -17,12 +17,6 @@ condition:
   before: "10:00:00"
 
 action:
-  - service: switch.turn_on
-    target:
-      area_id: kitchen
-
   - service: light.turn_on
     target:
-      area_id: kitchen
-    data:
-      brightness_pct: 70
+      entity_id: light.kitchen_lights_zgroup

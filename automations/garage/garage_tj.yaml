@@ -10,7 +10,7 @@ trigger:
     entity_id: device_tracker.tjs_iphone
     from: "not_home"
     to: "home"
-    for: "00:00:30"
+    for: "00:00:15"
 
 condition:
   - condition: state
@@ -24,11 +24,7 @@ action:
 
   - service: light.turn_on
     target:
-      area_id: kitchen
-
-  - service: switch.turn_on
-    target:
-      area_id: kitchen
+      entity_id: light.kitchen_lights_zgroup
 
   - choose:
       - conditions:

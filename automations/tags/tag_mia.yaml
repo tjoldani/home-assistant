@@ -14,4 +14,4 @@ trigger:
 action:
   - service: light.toggle
     target:
-      area_id: mias_room
+      entity_id: light.mias_light_zgroup

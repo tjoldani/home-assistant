@@ -29,7 +29,7 @@ condition:
 action:
   - service: light.turn_on
     target:
-      area_id: bedroom
+      entity_id: light.bedroom_lights_zgroup
     data:
       brightness_pct: 35
       transition: 120

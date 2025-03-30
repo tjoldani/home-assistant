@@ -14,4 +14,4 @@ trigger:
 action:
   - service: notify.mobile_app_nichole
     data:
-      message: "TJ has just left work."
+      message: "Your man is on his way home!"

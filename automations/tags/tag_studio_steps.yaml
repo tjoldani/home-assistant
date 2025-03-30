@@ -12,7 +12,4 @@ trigger:
 actions:
   - action: light.turn_off
     target:
-      area_id: studio
-  - action: switch.turn_off
-    target:
-      area_id: studio
+      entity_id: light.studio_lights_zgroup

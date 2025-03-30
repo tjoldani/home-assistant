@@ -14,7 +14,7 @@ trigger:
     entity_id: binary_sensor.kitchen_motion
     to: "off"
     for:
-      minutes: 5
+      minutes: 15
 
 action:
   - choose:
@@ -25,7 +25,7 @@ action:
         sequence:
           - service: light.turn_on
             target:
-              area_id: kitchen
+              entity_id: light.kitchen_lights_zgroup
       - conditions:
           - condition: state
             entity_id: binary_sensor.kitchen_motion
@@ -33,4 +33,4 @@ action:
         sequence:
           - service: light.turn_off
             target:
-              area_id: kitchen
+              entity_id: light.kitchen_lights_zgroup
