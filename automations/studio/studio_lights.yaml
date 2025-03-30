@@ -1,6 +1,6 @@
 ---
 alias: "Studio Lights"
-description: "Turns on with motion, off 2 hours after no motion."
+description: "Turns on with motion, and off after no motion."
 id: "studio_lights"
 mode: restart
 
@@ -17,7 +17,7 @@ trigger:
       - binary_sensor.studio_motion_2
     to: "off"
     for:
-      hours: 1
+      minutes: 60
 
 action:
   - choose:
@@ -30,6 +30,9 @@ action:
               - condition: state
                 entity_id: binary_sensor.studio_motion_2
                 state: "on"
+          - condition: state
+            entity_id: light.studio_lounge_1
+            state: "off"
         sequence:
           - service: scene.turn_on
             target:
