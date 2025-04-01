@@ -1,0 +1,17 @@
+---
+alias: Mia Button
+description: >-
+  One click to toggle Mia's lights.
+
+mode: single
+
+trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_ieee: "28:2c:02:bf:ff:ee:a1:8d"
+
+action:
+  - service: light.toggle
+    target:
+      entity_id: light.mias_light_zgroup
