@@ -16,12 +16,3 @@ home_temperature_night:
   unit_of_measurement: "°F"
   mode: slider
   icon: mdi:weather-night
-
-home_temperature_away:
-  name: "Away Target Temperature"
-  min: 65
-  max: 75
-  step: 1
-  unit_of_measurement: "°F"
-  mode: slider
-  icon: mdi:home-export-outline

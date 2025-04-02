@@ -11,10 +11,6 @@ trigger:
     trigger: state
   - entity_id: input_number.home_temperature_night
     trigger: state
-  - entity_id: input_number.home_temperature_away
-    trigger: state
-  - entity_id: group.family
-    trigger: state
   - hours: /1
     trigger: time_pattern
 
@@ -24,9 +20,7 @@ action:
       entity_id: climate.thermostat
     data:
       temperature: >
-        {% if is_state('group.family', 'not_home') %}
-          {{ states('input_number.home_temperature_away') | float }}
-        {% elif now().hour >= 7 and now().hour < 21 %}
+        {% if now().hour >= 7 and now().hour < 21 %}
           {{ states('input_number.home_temperature_day') | float }}
         {% else %}
           {{ states('input_number.home_temperature_night') | float }}
