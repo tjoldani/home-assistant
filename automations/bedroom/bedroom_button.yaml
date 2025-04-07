@@ -26,6 +26,14 @@ action:
           - condition: template
             value_template: "{{ trigger.event.data.command == 'double' }}"
         sequence:
+          - service: light.toggle
+            target:
+              entity_id: light.bedroom_lights_zgroup
+
+      - conditions:
+          - condition: template
+            value_template: "{{ trigger.event.data.command == 'hold' }}"
+        sequence:
           - service: switch.turn_off
             target:
               entity_id:
