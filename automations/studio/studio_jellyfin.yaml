@@ -28,6 +28,9 @@ action:
               entity_id: scene.movie_time
             data:
               transition: 3
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.movie_time_active
       - conditions:
           - condition: state
             entity_id: media_player.studio_jellyfin
@@ -38,3 +41,6 @@ action:
               entity_id: scene.studio_time
             data:
               transition: 3
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.movie_time_active

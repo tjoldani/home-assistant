@@ -9,6 +9,9 @@ trigger:
       - binary_sensor.studio_motion_2
     to: "on"
 condition:
+  - condition: state
+    entity_id: input_boolean.movie_time_active
+    state: "off"
   - condition: or
     conditions:
       - condition: state
