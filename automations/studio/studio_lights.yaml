@@ -1,3 +1,4 @@
+---
 alias: "Studio Lights"
 description: "Turns on with motion, and off after 60 minutes of no motion."
 mode: restart
