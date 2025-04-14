@@ -19,7 +19,6 @@ action:
     target:
       entity_id: scene.studio_time
 
-  # Wait for 60 minutes of no motion
   - wait_for_trigger:
       - platform: state
         entity_id:
