@@ -1,6 +1,6 @@
 ---
 alias: "Museum Lights"
-description: "Turn on lights when motion is detected and off after 30 minutes of no motion."
+description: "Turn on lights when motion is detected and off after 60 minutes of no motion."
 
 id: "museum_lights"
 mode: restart
