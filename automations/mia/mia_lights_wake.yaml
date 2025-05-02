@@ -18,7 +18,7 @@ condition:
       - thu
       - fri
   - condition: state
-    entity_id: device_tracker.mias_iphone
+    entity_id: person.mia
     state: "home"
 
 action:

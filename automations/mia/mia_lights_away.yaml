@@ -7,8 +7,9 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: device_tracker.mias_iphone
-    from: "Home"
+    entity_id: person.mia
+    from: "home"
+    to: "not_home"
 
 action:
   - service: light.turn_off
