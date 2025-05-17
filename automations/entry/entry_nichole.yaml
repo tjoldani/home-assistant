@@ -33,7 +33,3 @@ action:
             data:
               media_content_id: "media-source://media_source/local/nichole.mp3"
               media_content_type: "music"
-
-  - service: notify.mobile_app_tjs_iphone
-    data:
-      message: "Nichole is home."
