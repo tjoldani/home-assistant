@@ -1,25 +1,17 @@
----
 alias: "Entry Away"
 description: >-
   When anyone leaves, lock the front door, close the
-  garage door if it is open, and announce to TJ.
+  garage door if it is open.
 
 id: "entry_away"
-mode: single
+mode: queued
 
 trigger:
   - platform: state
-    entity_id: person.tj
-    from: "home"
-    to: "not_home"
-
-  - platform: state
-    entity_id: person.nichole
-    from: "home"
-    to: "not_home"
-
-  - platform: state
-    entity_id: person.mia
+    entity_id:
+      - person.tj
+      - person.nichole
+      - person.mia
     from: "home"
     to: "not_home"
 
@@ -36,9 +28,3 @@ action:
       - service: switch.turn_on
         target:
           entity_id: switch.garage_door
-      - service: notify.notify
-        data:
-          target:
-            - mobile_app_tjs_iphone
-            - mobile_app_nichole
-          message: "Garage door closed."

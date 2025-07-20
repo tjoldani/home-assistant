@@ -7,7 +7,7 @@ mode: single
 
 trigger:
   - platform: state
-    entity_id: device_tracker.mias_iphone
+    entity_id: person.mia
     to: "not_home"
 
 action:

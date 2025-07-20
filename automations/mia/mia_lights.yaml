@@ -1,6 +1,6 @@
 ---
 alias: "Mia Lights"
-description: "Turn in Mia's lights when motion is detected."
+description: "Turn on Mia's lights when motion is detected."
 
 id: "mia_lights"
 mode: restart
@@ -22,21 +22,14 @@ condition:
     before: "21:00:00"
 
 action:
-  - choose:
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.mias_room_motion
-            state: "on"
-        sequence:
-          - service: light.turn_on
-            target:
-              entity_id: light.mias_light_zgroup
-    
-      - conditions:
-         - condition: state
-           entity_id: binary_sensor.mias_room_motion
-           state: "off"
-        sequence:
-          - service: light.turn_off
-            target:
-              entity_id: light.mias_light_zgroup
+  - service: light.turn_on
+    target:
+      entity_id: light.mias_light_zgroup
+  - if:
+      - condition: state
+        entity_id: binary_sensor.mias_room_motion
+        state: "off"
+    then:
+      - service: light.turn_off
+        target:
+          entity_id: light.mias_light_zgroup

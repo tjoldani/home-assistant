@@ -3,11 +3,11 @@ alias: "Garage TJ"
 description: "Open the garage door when TJ comes home."
 
 id: "garage_tj"
-mode: single
+mode: restart
 
 trigger:
   - platform: state
-    entity_id: device_tracker.tjs_iphone
+    entity_id: person.tj
     from: "not_home"
     to: "home"
     for: "00:00:15"
@@ -16,6 +16,9 @@ condition:
   - condition: state
     entity_id: binary_sensor.garage_door_sensor_sensor_state_any
     state: "off"
+  - condition: time
+    after: "06:00:00"
+    before: "23:59:59"
 
 action:
   - service: switch.turn_on

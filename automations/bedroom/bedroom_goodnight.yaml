@@ -1,4 +1,3 @@
----
 alias: "Bedroom Goodnight"
 description: >-
   Turns off lights, locks doors, and shuts down
@@ -13,9 +12,12 @@ trigger:
     to: "Charging"
 
 condition:
-  - condition: time
-    after: "20:30:00"
-    before: "06:00:00"
+  - condition: or
+    conditions:
+      - condition: time
+        after: "20:30:00"
+      - condition: time
+        before: "06:00:00"
 
 action:
   - service: switch.turn_off

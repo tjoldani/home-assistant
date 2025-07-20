@@ -1,14 +1,14 @@
 ---
 alias: "Entry Nichole"
 description: >-
-  Unlock the door, turn on kitchen lights, and announce when Nichole is home."
+  Unlock the door, turn on kitchen lights, and announce when Nichole is home.
 
 id: "entry_nichole"
-mode: single
+mode: restart
 
 trigger:
   - platform: state
-    entity_id: device_tracker.nichole_s_iphone
+    entity_id: person.nichole
     from: not_home
     to: home
 

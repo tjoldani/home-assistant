@@ -11,7 +11,12 @@ trigger:
     to: "on"
 
 action:
-  - service: notify.notify
+  - service: notify.mobile_app_tjs_iphone
     data:
-      title: "Doorbell Notification"
-      message: "Someone rang the doorbell."
+      message: "Someone is at the door."
+  - service: notify.mobile_app_nicholes_iphone
+    data:
+      message: "Someone is at the door."
+  - service: notify.mobile_app_mias_iphone
+    data:
+      message: "Someone is at the door."

@@ -12,6 +12,6 @@ trigger:
     event: leave
 
 action:
-  - service: notify.mobile_app_nichole
+  - service: notify.mobile_app_nicholes_iphone
     data:
-      message: "Your man is on his way home!"
+      message: "Bringing home the bacon."

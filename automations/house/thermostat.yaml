@@ -1,18 +1,18 @@
----
 alias: "Entry Thermostat"
-description: >-
-  Sets the thermostat temperature based on the time of day and presence.
+description: "Sets the thermostat temperature based on the time of day."
 
 id: "entry_thermostat"
 mode: single
 
 trigger:
-  - entity_id: input_number.home_temperature_day
-    trigger: state
-  - entity_id: input_number.home_temperature_night
-    trigger: state
-  - hours: /1
-    trigger: time_pattern
+  - platform: state
+    entity_id: input_number.home_temperature_day
+
+  - platform: state
+    entity_id: input_number.home_temperature_night
+
+  - platform: time_pattern
+    minutes: "0"
 
 action:
   - service: climate.set_temperature

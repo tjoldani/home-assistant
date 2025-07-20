@@ -1,6 +1,6 @@
 ---
 alias: "Entry Lock Door"
-description: "Lock the front door if unlocked."
+description: "Lock the front door if left unlocked."
 
 id: "entry_lock_door"
 mode: single
