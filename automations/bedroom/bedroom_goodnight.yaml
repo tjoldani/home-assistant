@@ -5,7 +5,7 @@ description: >-
   the house when TJ's phone starts charging at night.
 
 id: "bedroom_goodnight"
-mode: restart
+mode: single
 
 trigger:
   - platform: state
@@ -13,12 +13,17 @@ trigger:
     to: "Charging"
 
 condition:
-  - condition: or
+  - condition: and
     conditions:
-      - condition: time
-        after: "20:30:00"
-      - condition: time
-        before: "06:00:00"
+      - condition: state
+        entity_id: person.tj
+        state: "home"
+      - condition: or
+        conditions:
+          - condition: time
+            after: "20:30:00"
+          - condition: time
+            before: "06:00:00"
 
 action:
   - service: switch.turn_off
@@ -26,6 +31,7 @@ action:
       entity_id:
         - switch.museum_stereo
         - switch.museum_tv_lamps_switch
+        - switch.living_room_fan
 
   - service: light.turn_off
     target:
@@ -54,7 +60,7 @@ action:
 
   - if:
       - condition: state
-        entity_id: binary_sensor.garage_door_sensor_sensor_state_any
+        entity_id: binary_sensor.garage_door_sensor_state
         state: "on"
     then:
       - service: switch.turn_on

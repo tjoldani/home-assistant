@@ -14,7 +14,7 @@ trigger:
 
 condition:
   - condition: state
-    entity_id: binary_sensor.garage_door_sensor_sensor_state_any
+    entity_id: binary_sensor.garage_door_sensor_state
     state: "off"
   - condition: time
     after: "06:00:00"
