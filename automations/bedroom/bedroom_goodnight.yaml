@@ -32,6 +32,7 @@ action:
         - switch.museum_stereo
         - switch.museum_tv_lamps_switch
         - switch.living_room_fan
+        - switch.studio_fan
 
   - service: light.turn_off
     target:
