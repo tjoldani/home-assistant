@@ -10,11 +10,11 @@ trigger:
     entity_id: person.tj
     from: "not_home"
     to: "home"
-    for: "00:00:15"
+    for: "00:00:05"
 
 condition:
   - condition: state
-    entity_id: binary_sensor.garage_door_sensor_state
+    entity_id: binary_sensor.garage_door_sensor_sensor_state_any
     state: "off"
   - condition: time
     after: "06:00:00"

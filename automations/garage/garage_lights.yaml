@@ -9,13 +9,13 @@ mode: restart
 
 trigger:
   - platform: state
-    entity_id: binary_sensor.garage_door_sensor_state
+    entity_id: binary_sensor.garage_door_sensor_sensor_state_any
 
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: binary_sensor.garage_door_sensor_state
+            entity_id: binary_sensor.garage_door_sensor_sensor_state_any
             state: "on"
         sequence:
           - service: light.turn_on
@@ -24,7 +24,7 @@ action:
 
       - conditions:
           - condition: state
-            entity_id: binary_sensor.garage_door_sensor_state
+            entity_id: binary_sensor.garage_door_sensor_sensor_state_any
             state: "off"
         sequence:
           - delay: "00:02:00"

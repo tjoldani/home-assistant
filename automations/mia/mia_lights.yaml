@@ -1,4 +1,3 @@
----
 alias: "Mia Lights"
 description: >
   Turn on Mia's lights when motion is detected.
@@ -12,12 +11,14 @@ trigger:
   - platform: state
     entity_id: binary_sensor.mias_room_motion
     to: "on"
+    id: motion_detected
 
   - platform: state
     entity_id: binary_sensor.mias_room_motion
     to: "off"
     for:
       minutes: 60
+    id: motion_cleared
 
 condition:
   - condition: time
@@ -25,15 +26,18 @@ condition:
     before: "21:00:00"
 
 action:
-  - service: light.turn_on
-    target:
-      entity_id: light.mias_light_zgroup
-
   - choose:
       - conditions:
-          - condition: state
-            entity_id: binary_sensor.mias_room_motion
-            state: "off"
+          - condition: trigger
+            id: motion_detected
+        sequence:
+          - service: light.turn_on
+            target:
+              entity_id: light.mias_light_zgroup
+
+      - conditions:
+          - condition: trigger
+            id: motion_cleared
         sequence:
           - service: light.turn_off
             target:
