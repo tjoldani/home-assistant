@@ -34,6 +34,10 @@ action:
           - condition: template
             value_template: "{{ trigger.event.data.command == 'hold' }}"
         sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.movie_time_active
+
           - service: switch.turn_off
             target:
               entity_id:
