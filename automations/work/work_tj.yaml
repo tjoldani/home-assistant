@@ -11,7 +11,19 @@ trigger:
     zone: zone.work
     event: leave
 
+condition:
+  - condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    after: "14:00:00"
+    before: "18:00:00"
+
 action:
   - service: notify.mobile_app_nicholes_iphone
     data:
+      title: "TJ"
       message: "Bringing home the bacon."

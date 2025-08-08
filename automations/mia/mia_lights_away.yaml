@@ -8,6 +8,7 @@ mode: single
 trigger:
   - platform: state
     entity_id: person.mia
+    from: "home"
     to: "not_home"
 
 action:

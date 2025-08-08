@@ -25,6 +25,9 @@ action:
       - conditions:
           - condition: trigger
             id: motion_on
+          - condition: state
+            entity_id: input_boolean.incognito_mode
+            state: "off"
         sequence:
           - service: light.turn_on
             target:

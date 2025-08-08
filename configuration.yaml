@@ -20,3 +20,4 @@ sensor: !include_dir_merge_list sensors/
 # Input Numbers and Groups
 input_number: !include_dir_merge_named input_numbers/
 group: !include_dir_merge_named groups/
+input_boolean: !include_dir_merge_named input_booleans/

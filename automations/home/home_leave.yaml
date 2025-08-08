@@ -1,10 +1,10 @@
 ---
-alias: "Entry Away"
+alias: "Home Leave"
 description: >-
   When anyone leaves, lock the front door, close the
   garage door if it is open.
 
-id: "entry_away"
+id: "home_leave"
 mode: queued
 
 trigger:

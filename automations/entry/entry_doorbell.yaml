@@ -13,10 +13,13 @@ trigger:
 action:
   - service: notify.mobile_app_tjs_iphone
     data:
+      title: "Front Door"
       message: "Someone is at the door."
   - service: notify.mobile_app_nicholes_iphone
     data:
+      title: "Front Door"
       message: "Someone is at the door."
   - service: notify.mobile_app_mias_iphone
     data:
+      title: "Front Door"
       message: "Someone is at the door."

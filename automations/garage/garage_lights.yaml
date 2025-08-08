@@ -27,7 +27,7 @@ action:
             entity_id: binary_sensor.garage_door_sensor_sensor_state_any
             state: "off"
         sequence:
-          - delay: "00:02:00"
+          - delay: "00:01:00"
           - service: light.turn_off
             target:
               entity_id: light.garage_lights_zgroup

@@ -1,0 +1,68 @@
+---
+alias: "Home Arrive"
+description: Handle home actions when Nichole or TJ arrives home.
+id: "home_arrive"
+mode: queued
+
+trigger:
+  - platform: state
+    id: tj
+    entity_id: person.tj
+    from: "not_home"
+    to: "home"
+    for: "00:00:05"
+
+  - platform: state
+    id: nichole
+    entity_id: person.nichole
+    from: "not_home"
+    to: "home"
+    for: "00:00:05"
+
+action:
+  - service: light.turn_on
+    target:
+      entity_id: light.kitchen_lights_zgroup
+
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: tj
+        sequence:
+          - condition: state
+            entity_id: binary_sensor.garage_door_sensor_sensor_state_any
+            state: "off"
+          - condition: time
+            after: "06:00:00"
+            before: "23:59:59"
+          - service: switch.turn_on
+            target:
+              entity_id: switch.garage_door
+
+          - condition: time
+            after: "08:00:00"
+            before: "21:00:00"
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.all_homepod_minis
+            data:
+              media_content_id: "media-source://media_source/local/YouSuffer.mp3"
+              media_content_type: "audio/mpeg"
+
+      - conditions:
+          - condition: trigger
+            id: nichole
+        sequence:
+          - service: lock.unlock
+            target:
+              entity_id: lock.front_door
+
+          - condition: time
+            after: "08:00:00"
+            before: "21:00:00"
+          - service: media_player.play_media
+            target:
+              entity_id: media_player.all_homepod_minis
+            data:
+              media_content_id: "media-source://media_source/local/nichole.mp3"
+              media_content_type: "audio/mpeg"
