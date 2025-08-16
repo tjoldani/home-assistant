@@ -1,19 +1,20 @@
 ---
 alias: "Entry Thermostat"
-description: "Sets the thermostat temperature based on the time of day."
-
+description: "Set thermostat based on day/night with exact switch times."
 id: "entry_thermostat"
 mode: single
 
 trigger:
+  - platform: time
+    at: "06:00:00"
+  - platform: time
+    at: "21:00:00"
   - platform: state
-    entity_id: input_number.home_temperature_day
-
-  - platform: state
-    entity_id: input_number.home_temperature_night
-
-  - platform: time_pattern
-    minutes: "0"
+    entity_id:
+      - input_number.home_temperature_day
+      - input_number.home_temperature_night
+  - platform: homeassistant
+    event: start
 
 action:
   - service: climate.set_temperature
@@ -21,7 +22,7 @@ action:
       entity_id: climate.thermostat
     data:
       temperature: >
-        {% if now().hour >= 7 and now().hour < 21 %}
+        {% if now().hour >= 6 and now().hour < 21 %}
           {{ states('input_number.home_temperature_day') | float }}
         {% else %}
           {{ states('input_number.home_temperature_night') | float }}

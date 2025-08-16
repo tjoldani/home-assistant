@@ -69,7 +69,8 @@ action:
                 - media_player.bedroom_apple_tv
                 - media_player.living_room_apple_tv
                 - media_player.studio_apple_tv
-                - media_player.museum_appletv
+                - media_player.museum_apple_tv
+                - media_player.storage_apple_tv
 
           - if:
               - condition: state

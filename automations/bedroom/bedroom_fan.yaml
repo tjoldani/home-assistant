@@ -1,0 +1,39 @@
+alias: Bedroom Fan Night Cycle
+description: "Turn bedroom fan on at night if someone is home, off during the day."
+id: bedroom_fan_night_cycle
+mode: single
+
+trigger:
+  - platform: time
+    at: "20:00:00"  # 8 PM
+    id: turn_on
+  - platform: time
+    at: "08:00:00"  # 8 AM
+    id: turn_off
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: turn_on
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: person.tj
+                state: "home"
+              - condition: state
+                entity_id: person.nichole
+                state: "home"
+        sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.bedroom_fan
+      - conditions:
+          - condition: trigger
+            id: turn_off
+        sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.bedroom_fan
