@@ -1,7 +1,6 @@
 ---
 alias: Bedroom Lights
 description: "Turn on and off bedroom lights based on motion."
-
 id: "bedroom_lights"
 mode: restart
 
@@ -23,17 +22,17 @@ action:
       - conditions:
           - condition: trigger
             id: motion_on
+          - condition: not
+            conditions:
+              - condition: time
+                after: "01:00:00"
+                before: "06:00:00"
         sequence:
           - service: light.turn_on
             target:
               entity_id: light.bedroom_lights_zgroup
             data:
-              brightness_pct: >
-                {% if states.sun.sun.state == "above_horizon" %}
-                  35
-                {% else %}
-                  1
-                {% endif %}
+              brightness_pct: 1
 
       - conditions:
           - condition: trigger
