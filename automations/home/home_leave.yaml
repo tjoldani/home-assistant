@@ -1,11 +1,9 @@
 ---
 alias: "Home Leave"
-description: >-
-  When anyone leaves, lock the front door, close the
-  garage door if it is open.
-
+description: Lock front door and close garage when anyone leaves.
 id: "home_leave"
-mode: queued
+mode: single
+max_exceeded: silent
 
 trigger:
   - platform: state
@@ -17,9 +15,14 @@ trigger:
     to: "not_home"
 
 action:
-  - service: lock.lock
-    target:
-      entity_id: lock.front_door
+  - if:
+      - condition: state
+        entity_id: lock.front_door
+        state: "unlocked"
+    then:
+      - service: lock.lock
+        target:
+          entity_id: lock.front_door
 
   - if:
       - condition: state
