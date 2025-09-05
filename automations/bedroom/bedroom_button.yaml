@@ -45,6 +45,7 @@ action:
                 - switch.museum_tv_lamps_switch
                 - switch.living_room_fan
                 - switch.studio_fan
+                - switch.backyard
 
           - service: light.turn_off
             target:
@@ -58,6 +59,7 @@ action:
                 - light.museum_lights_zgroup
                 - light.bathroom_lights_zgroup
                 - light.bedroom_lights_zgroup
+                - light.garage_lights_zgroup
 
           - service: lock.lock
             target:
