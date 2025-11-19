@@ -30,6 +30,7 @@ variables:
     {% endif %}
 
 action:
+  # Turn on kitchen lights if off
   - if:
       - condition: state
         entity_id: light.kitchen_lights_zgroup
@@ -39,7 +40,9 @@ action:
         target:
           entity_id: light.kitchen_lights_zgroup
 
+  # Person-specific arrival actions
   - choose:
+      # TJ arrives → open garage if closed and during hours
       - conditions:
           - condition: trigger
             id: tj
@@ -54,6 +57,7 @@ action:
             target:
               entity_id: switch.garage_door
 
+      # Nichole arrives → unlock front door if locked
       - conditions:
           - condition: trigger
             id: nichole
@@ -65,6 +69,7 @@ action:
             target:
               entity_id: lock.front_door
 
+  # Arrival chime to HA Voice speakers only
   - if:
       - condition: time
         after: "08:00:00"
@@ -75,8 +80,8 @@ action:
       - service: media_player.play_media
         target:
           entity_id:
-            - media_player.downstairs
             - media_player.home_assistant_voice_studio_media_player
+            - media_player.home_assistant_voice_living_room_media_player
         data:
           media_content_id: "{{ sound }}"
-          media_content_type: music
+          media_content_type: audio/mpeg
