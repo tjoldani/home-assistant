@@ -1,4 +1,3 @@
----
 alias: "Home Arrive"
 description: Handle home actions when Nichole or TJ arrive home.
 id: "home_arrive"
@@ -26,10 +25,12 @@ variables:
       media-source://media_source/local/YouSuffer.mp3
     {% elif trigger.id == 'nichole' %}
       media-source://media_source/local/nichole.mp3
-    {% else %}{% endif %}
+    {% else %}
+      ''
+    {% endif %}
 
 action:
-  # Turn on kitchen lights only if they're off
+  # Turn on kitchen lights if off
   - if:
       - condition: state
         entity_id: light.kitchen_lights_zgroup
@@ -39,14 +40,15 @@ action:
         target:
           entity_id: light.kitchen_lights_zgroup
 
-  # TJ arrives → pulse garage if closed and during allowed hours
+  # Person-specific arrival actions
   - choose:
+      # TJ arrives → open garage if closed and during hours
       - conditions:
           - condition: trigger
             id: tj
-          - condition: state
-            entity_id: binary_sensor.garage_door_sensor_sensor_state_any
-            state: "off" # closed
+          - condition: template
+            value_template: >
+              {{ states('binary_sensor.garage_door_sensor_sensor_state_any') in ['off', 'closed'] }}
           - condition: time
             after: "06:00:00"
             before: "23:59:59"
@@ -55,7 +57,7 @@ action:
             target:
               entity_id: switch.garage_door
 
-      # Nichole arrives → unlock if locked
+      # Nichole arrives → unlock front door if locked
       - conditions:
           - condition: trigger
             id: nichole
@@ -67,22 +69,19 @@ action:
             target:
               entity_id: lock.front_door
 
-  # Arrival chime: use the GROUP (as you prefer), within hours, and only if not already playing
+  # Arrival chime to HA Voice speakers only
   - if:
       - condition: time
         after: "08:00:00"
         before: "21:00:00"
       - condition: template
         value_template: "{{ sound | length > 0 }}"
-      - condition: template
-        value_template: >
-          {{ states('media_player.all_homepod_minis') not in ['playing', 'buffering'] }}
     then:
       - service: media_player.play_media
         target:
-          entity_id: 
-            - media_player.all_homepod_minis
+          entity_id:
             - media_player.home_assistant_voice_studio_media_player
+            - media_player.home_assistant_voice_living_room_media_player
         data:
           media_content_id: "{{ sound }}"
-          media_content_type: music
+          media_content_type: audio/mpeg
