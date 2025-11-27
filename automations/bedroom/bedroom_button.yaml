@@ -4,7 +4,7 @@ description: >-
   One click to toggle TJ, double click to toggle Bedroom
   and hold to run the goodnight mode.
 
-mode: queued
+mode: single
 
 trigger:
   - platform: event
@@ -57,7 +57,6 @@ action:
                 - light.living_room_lights_zgroup
                 - light.lounge_lights_zgroup
                 - light.museum_lights_zgroup
-                - light.bathroom_lights_zgroup
                 - light.bedroom_lights_zgroup
                 - light.garage_lights_zgroup
 

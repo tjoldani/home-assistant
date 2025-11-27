@@ -1,21 +1,21 @@
 ---
-alias: "Holiday Switches"
-description: "Turn on at 5 PM and off at 11:59 PM."
-id: "holiday_switches"
-mode: single
-
+alias: Holiday Switches
+description: Turn holiday switches on and off at set times
 trigger:
   - platform: time
     at: "17:00:00"
+    id: turn_on
   - platform: time
     at: "23:59:00"
+    id: turn_off
+
+condition: []
 
 action:
   - choose:
-      # Turn ON at 5 PM
       - conditions:
-          - condition: template
-            value_template: "{{ trigger.at == '17:00:00' }}"
+          - condition: trigger
+            id: turn_on
         sequence:
           - service: switch.turn_on
             target:
@@ -24,10 +24,9 @@ action:
                 - switch.outdoor_holiday_2
                 - switch.outdoor_holiday_3
 
-      # Turn OFF at 11:59 PM
       - conditions:
-          - condition: template
-            value_template: "{{ trigger.at == '23:59:00' }}"
+          - condition: trigger
+            id: turn_off
         sequence:
           - service: switch.turn_off
             target:
@@ -35,3 +34,5 @@ action:
                 - switch.outdoor_holiday_1
                 - switch.outdoor_holiday_2
                 - switch.outdoor_holiday_3
+
+mode: single

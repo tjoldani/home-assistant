@@ -80,7 +80,9 @@ action:
     then:
       - service: media_player.play_media
         target:
-          entity_id: media_player.all_homepod_minis
+          entity_id: 
+            - media_player.all_homepod_minis
+            - media_player.home_assistant_voice_studio_media_player
         data:
           media_content_id: "{{ sound }}"
           media_content_type: music
